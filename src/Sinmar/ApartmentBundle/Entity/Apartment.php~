@@ -1,0 +1,926 @@
+<?php
+
+namespace Sinmar\ApartmentBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Apartment
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Sinmar\ApartmentBundle\Entity\ApartmentRepository")
+ */
+class Apartment
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", length=255)
+     */
+    private $state;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zip", type="string", length=255)
+     */
+    private $zip;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Community", inversedBy="apartments")
+     */
+    private $community;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax", type="string", length=255)
+     */
+    private $fax;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="incomeToRentRatio", type="integer")
+     */
+    private $incomeToRentRatio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mgmt", type="string", length=255)
+     */
+    private $mgmt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apartmentContactName", type="string", length=255)
+     */
+    private $apartmentContactName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apartmentContactPhone", type="string", length=255)
+     */
+    private $apartmentContactPhone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="website", type="string", length=255)
+     */
+    private $website;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="complianceDepotMember", type="string", length=255)
+     */
+    private $complianceDepotMember;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="moveInSpecials", type="string", length=255)
+     */
+    private $moveInSpecials;
+
+    /**
+     * @var string
+     * @ORM\Column(name="lat", type="string", length=255)
+     */
+    private $lat;
+
+    /**
+     * @var string
+     * @ORM\Column(name="lng", type="string", length=255)
+     */
+    private $lng;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rentalAgents", type="integer")
+     */
+    private $rentalAgents;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Amenities", inversedBy="apartment")
+     */
+    private $amenities;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pets", type="integer")
+     */
+    private $pets;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="felony", type="integer")
+     */
+    private $felony;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="yearsAfterFelony", type="integer")
+     */
+    private $yearsAfterFelony;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="misdemeanor", type="integer")
+     */
+    private $misdemeanor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="yearsAfterMisdemeanor", type="integer")
+     */
+    private $yearsAfterMisdemeanor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="judgements", type="integer")
+     */
+    private $judgements;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="judgementAge", type="integer")
+     */
+    private $judgementAge;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="judgementAmtAccepted", type="integer")
+     */
+    private $judgementAmtAccepted;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Apartment
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return Apartment
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Apartment
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     *
+     * @return Apartment
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set zip
+     *
+     * @param string $zip
+     *
+     * @return Apartment
+     */
+    public function setZip($zip)
+    {
+        $this->zip = $zip;
+
+        return $this;
+    }
+
+    /**
+     * Get zip
+     *
+     * @return string
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * Set community
+     *
+     * @param string $community
+     *
+     * @return Apartment
+     */
+    public function setCommunity($community)
+    {
+        $this->community = $community;
+
+        return $this;
+    }
+
+    /**
+     * Get community
+     *
+     * @return string
+     */
+    public function getCommunity()
+    {
+        return $this->community;
+    }
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     *
+     * @return Apartment
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return Apartment
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Apartment
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set incomeToRentRatio
+     *
+     * @param string $incomeToRentRatio
+     *
+     * @return Apartment
+     */
+    public function setIncomeToRentRatio($incomeToRentRatio)
+    {
+        $this->incomeToRentRatio = $incomeToRentRatio;
+
+        return $this;
+    }
+
+    /**
+     * Get incomeToRentRatio
+     *
+     * @return string
+     */
+    public function getIncomeToRentRatio()
+    {
+        return $this->incomeToRentRatio;
+    }
+
+    /**
+     * Set mgmt
+     *
+     * @param string $mgmt
+     *
+     * @return Apartment
+     */
+    public function setMgmt($mgmt)
+    {
+        $this->mgmt = $mgmt;
+
+        return $this;
+    }
+
+    /**
+     * Get mgmt
+     *
+     * @return string
+     */
+    public function getMgmt()
+    {
+        return $this->mgmt;
+    }
+
+    /**
+     * Set apartmentContactName
+     *
+     * @param string $apartmentContactName
+     *
+     * @return Apartment
+     */
+    public function setApartmentContactName($apartmentContactName)
+    {
+        $this->apartmentContactName = $apartmentContactName;
+
+        return $this;
+    }
+
+    /**
+     * Get apartmentContactName
+     *
+     * @return string
+     */
+    public function getApartmentContactName()
+    {
+        return $this->apartmentContactName;
+    }
+
+    /**
+     * Set apartmentContactPhone
+     *
+     * @param string $apartmentContactPhone
+     *
+     * @return Apartment
+     */
+    public function setApartmentContactPhone($apartmentContactPhone)
+    {
+        $this->apartmentContactPhone = $apartmentContactPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get apartmentContactPhone
+     *
+     * @return string
+     */
+    public function getApartmentContactPhone()
+    {
+        return $this->apartmentContactPhone;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     *
+     * @return Apartment
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Apartment
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set complianceDepotMember
+     *
+     * @param string $complianceDepotMember
+     *
+     * @return Apartment
+     */
+    public function setComplianceDepotMember($complianceDepotMember)
+    {
+        $this->complianceDepotMember = $complianceDepotMember;
+
+        return $this;
+    }
+
+    /**
+     * Get complianceDepotMember
+     *
+     * @return string
+     */
+    public function getComplianceDepotMember()
+    {
+        return $this->complianceDepotMember;
+    }
+
+    /**
+     * Set moveInSpecials
+     *
+     * @param string $moveInSpecials
+     *
+     * @return Apartment
+     */
+    public function setMoveInSpecials($moveInSpecials)
+    {
+        $this->moveInSpecials = $moveInSpecials;
+
+        return $this;
+    }
+
+    /**
+     * Get moveInSpecials
+     *
+     * @return string
+     */
+    public function getMoveInSpecials()
+    {
+        return $this->moveInSpecials;
+    }
+
+    /**
+     * Set rentalAgents
+     *
+     * @param integer $rentalAgents
+     *
+     * @return Apartment
+     */
+    public function setRentalAgents($rentalAgents)
+    {
+        $this->rentalAgents = $rentalAgents;
+
+        return $this;
+    }
+
+    /**
+     * Get rentalAgents
+     *
+     * @return integer
+     */
+    public function getRentalAgents()
+    {
+        return $this->rentalAgents;
+    }
+
+    /**
+     * Set amenities
+     *
+     * @param \Sinmar\ApartmentBundle\Entity\Amenities $amenities
+     *
+     * @return Apartment
+     */
+    public function setAmenities(\Sinmar\ApartmentBundle\Entity\Amenities $amenities = null)
+    {
+        $this->amenities = $amenities;
+
+        return $this;
+    }
+
+    /**
+     * Get amenities
+     *
+     * @return \Sinmar\ApartmentBundle\Entity\Amenities
+     */
+    public function getAmenities()
+    {
+        return $this->amenities;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param string $lat
+     *
+     * @return Apartment
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return string
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param string $lng
+     *
+     * @return Apartment
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return string
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set pets
+     *
+     * @param integer $pets
+     *
+     * @return Apartment
+     */
+    public function setPets($pets)
+    {
+        $this->pets = $pets;
+
+        return $this;
+    }
+
+    /**
+     * Get pets
+     *
+     * @return integer
+     */
+    public function getPets()
+    {
+        return $this->pets;
+    }
+
+    /**
+     * Set felony
+     *
+     * @param integer $felony
+     *
+     * @return Apartment
+     */
+    public function setFelony($felony)
+    {
+        $this->felony = $felony;
+
+        return $this;
+    }
+
+    /**
+     * Get felony
+     *
+     * @return integer
+     */
+    public function getFelony()
+    {
+        return $this->felony;
+    }
+
+    /**
+     * Set yearsAfterFelony
+     *
+     * @param integer $yearsAfterFelony
+     *
+     * @return Apartment
+     */
+    public function setYearsAfterFelony($yearsAfterFelony)
+    {
+        $this->yearsAfterFelony = $yearsAfterFelony;
+
+        return $this;
+    }
+
+    /**
+     * Get yearsAfterFelony
+     *
+     * @return integer
+     */
+    public function getYearsAfterFelony()
+    {
+        return $this->yearsAfterFelony;
+    }
+
+    /**
+     * Set misdemeanor
+     *
+     * @param integer $misdemeanor
+     *
+     * @return Apartment
+     */
+    public function setMisdemeanor($misdemeanor)
+    {
+        $this->misdemeanor = $misdemeanor;
+
+        return $this;
+    }
+
+    /**
+     * Get misdemeanor
+     *
+     * @return integer
+     */
+    public function getMisdemeanor()
+    {
+        return $this->misdemeanor;
+    }
+
+    /**
+     * Set yearsAfterMisdemeanor
+     *
+     * @param integer $yearsAfterMisdemeanor
+     *
+     * @return Apartment
+     */
+    public function setYearsAfterMisdemeanor($yearsAfterMisdemeanor)
+    {
+        $this->yearsAfterMisdemeanor = $yearsAfterMisdemeanor;
+
+        return $this;
+    }
+
+    /**
+     * Get yearsAfterMisdemeanor
+     *
+     * @return integer
+     */
+    public function getYearsAfterMisdemeanor()
+    {
+        return $this->yearsAfterMisdemeanor;
+    }
+
+    /**
+     * Set judgements
+     *
+     * @param integer $judgements
+     *
+     * @return Apartment
+     */
+    public function setJudgements($judgements)
+    {
+        $this->judgements = $judgements;
+
+        return $this;
+    }
+
+    /**
+     * Get judgements
+     *
+     * @return integer
+     */
+    public function getJudgements()
+    {
+        return $this->judgements;
+    }
+
+    /**
+     * Set judgementAge
+     *
+     * @param integer $judgementAge
+     *
+     * @return Apartment
+     */
+    public function setJudgementAge($judgementAge)
+    {
+        $this->judgementAge = $judgementAge;
+
+        return $this;
+    }
+
+    /**
+     * Get judgementAge
+     *
+     * @return integer
+     */
+    public function getJudgementAge()
+    {
+        return $this->judgementAge;
+    }
+
+    /**
+     * Set judgementAmtAccepted
+     *
+     * @param integer $judgementAmtAccepted
+     *
+     * @return Apartment
+     */
+    public function setJudgementAmtAccepted($judgementAmtAccepted)
+    {
+        $this->judgementAmtAccepted = $judgementAmtAccepted;
+
+        return $this;
+    }
+
+    /**
+     * Get judgementAmtAccepted
+     *
+     * @return integer
+     */
+    public function getJudgementAmtAccepted()
+    {
+        return $this->judgementAmtAccepted;
+    }
+}
