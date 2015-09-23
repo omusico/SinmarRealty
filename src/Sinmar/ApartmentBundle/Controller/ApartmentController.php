@@ -35,23 +35,23 @@ class ApartmentController extends Controller
         return array("pagination" => $pagination);
     }
 
-    /**
-     * @Route("/apartments/edit/{id}", name="apartment_edit")
-     * @Template("SinmarApartmentBundle:Apartment:form.html.twig")
-     */
-    public function apartmentEdit($id = 0)
-    {
-        if (is_numeric($id) && $id > 0) {
-            $apartment = $this->getDoctrine()->getRepository("SinmarApartmentBundle:Apartment")->find($id);
-
-            $communities = $this->getDoctrine()->getRepository("SinmarApartmentBundle:Community")->findAll();
-
-        } else {
-            $this->get('session')->getFlashBag()->add('error', "Can't find specified Apartment.");
-        }
-
-        return array("apartment" => $apartment, "communities" => $communities);
-    }
+//    /**
+//     * @Route("/apartments/edit/{id}", name="apartment_edit")
+//     * @Template("SinmarApartmentBundle:Apartment:form.html.twig")
+//     */
+//    public function apartmentEdit($id = 0)
+//    {
+//        if (is_numeric($id) && $id > 0) {
+//            $apartment = $this->getDoctrine()->getRepository("SinmarApartmentBundle:Apartment")->find($id);
+//
+//            $communities = $this->getDoctrine()->getRepository("SinmarApartmentBundle:Community")->findAll();
+//
+//        } else {
+//            $this->get('session')->getFlashBag()->add('error', "Can't find specified Apartment.");
+//        }
+//
+//        return array("apartment" => $apartment, "communities" => $communities);
+//    }
 
 
 }
