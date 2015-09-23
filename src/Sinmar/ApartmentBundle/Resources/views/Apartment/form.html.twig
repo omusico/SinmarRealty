@@ -1,0 +1,96 @@
+{% extends "SinmarApartmentBundle:Apartment:" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <form method="post">
+                <h2>Apartment Info</h2>
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <input type="text" id=name" name="name" class="form-control" value="{{ apartment.name }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="community">Community</label>
+                    <select name="community" id="community">
+                        <option value=""></option>
+                        {% for c in communities %}
+                            <option value="{{ c.id }}" {% if c.id == apartment.community.id %} Selected {% endif %}>{{ c.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" class="form-control" value="{{ apartment.phone }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <input type="text" id="email" name="email" class="form-control" value="{{ apartment.email }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="website">Website</label>
+                    <input type="text" id="website" name="website" class="form-control" value="{{ apartment.website }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="rentalAgents">Allows Agents?</label>
+                    <select name="rentalAgents" id="rentalAgents" class="form-control">
+                        <option value=""></option>
+                        <option value="0" {% if apartment.rentalAgent == 0 %} Selected {% endif %}>No</option>
+                        <option value="1" {% if apartment.rentalAgent == 1 %} Selected {% endif %}>Yes</option>
+                        <option value="2" {% if apartment.rentalAgent == 2 %} Selected {% endif %}>Unknown</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <textarea class="form-control" name="description" id="description">{{ apartment.description }}</textarea>
+                </div>
+
+                <h2>Apartment Address</h2>
+                <div class="form-group">
+                    <label class="control-label" for="address">Address</label>
+                    <input type="text" id="address" name="address" class="form-control" value="{{ apartment.address }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="city">City</label>
+                    <input type="text" id="city" name="city" class="form-control" value="{{ apartment.city }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="state">State</label>
+                    <select name="state" id="state" class="form-control">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="zip">Zip Code</label>
+                    <input type="text" id="zip" name="zip" class="form-control" value="{{ apartment.zip }}">
+                </div>
+
+                <h2>Felony</h2>
+                <div class="form-group">
+                    <label class="control-label" for="felony">Felony Allowed</label>
+                    <select name="felony" id="felony" class="form-control">
+                        <option value="0" {% if apartment.felony == 0 %} Selected {% endif %}>No</option>
+                        <option value="1" {% if apartment.felony == 1 %} Selected {% endif %}>Yes</option>
+                        <option value="2" {% if apartment.felony == 2 %} Selected {% endif %}>Some</option>
+                        <option value="3" {% if apartment.felony == 3 %} Selected {% endif %}>Unknown</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="yearsAfterFelony">Years After Felony</label>
+                    <input type="number" id="yearsAfterFelony" name="yearsAfterFelony" value="{{ apartment.yearsAfterFelony }}">
+                </div>
+
+                <h2>Misdemeanor</h2>
+                <div class="form-group">
+                    <label class="control-label" for="misdemeanor">Misdemeanor Allowed</label>
+                    <select name="misdemeanor" id="misdemeanor" class="form-control">
+                        <option value="0" {% if apartment.misdemeanor == 0 %} Selected {% endif %}>No</option>
+                        <option value="1">Yes</option>
+                        <option value="2">Some</option>
+                        <option value="3">Unknown</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock body %}

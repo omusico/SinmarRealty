@@ -10,10 +10,17 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/")
-     * @Template("SinmarApartmentBundle:")
+     * @Template("SinmarApartmentBundle:Default:home.html.twig")
      */
-    public function indexAction()
+    public function homeAction()
     {
-        return array();
+        $apartment = array();
+
+        for($i = 1; $i < 10; $i++)
+        {
+            $apartment[$i] = $this->getDoctrine()->getManager()->getRepository("SinmarApartmentBundle:Apartment")->find($i);
+        }
+
+        return array("apartment" => $apartment);
     }
 }

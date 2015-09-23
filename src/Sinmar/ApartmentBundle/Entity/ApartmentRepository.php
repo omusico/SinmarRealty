@@ -10,4 +10,15 @@ namespace Sinmar\ApartmentBundle\Entity;
  */
 class ApartmentRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByName($name)
+    {
+        $sql = "SELECT n FROM SinmarApartmentBundle:Apartment n WHERE n.name LIKE '%" . $name ."%' ";
+
+        $query = $this->getEntityManager()->createQuery($sql);
+
+        $results = $query->getResult();
+
+        return $results;
+    }
+
 }
