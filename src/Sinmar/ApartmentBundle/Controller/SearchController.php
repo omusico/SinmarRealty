@@ -49,6 +49,7 @@ class SearchController extends Controller
     {
         $results = $this->getDoctrine()->getManager()->getRepository("SinmarApartmentBundle:Apartment")->findByName($name);
 
+        var_dump($results);
         return array("results" => $results);
     }
 }

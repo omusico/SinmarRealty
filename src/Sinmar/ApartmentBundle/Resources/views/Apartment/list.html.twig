@@ -18,7 +18,7 @@
             <table class="table">
                 <tr>
                     <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
-                    <th{% if pagination.isSorted('a.community.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Community', 'a.community.name') }}</th>
+                    <th{% if pagination.isSorted('a.community') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Community', 'a.community.name') }}</th>
                     <th{% if pagination.isSorted('a.address') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Address', 'a.address') }}</th>
                     <th{% if pagination.isSorted('a.city') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'City', 'a.city') }}</th>
                     <th{% if pagination.isSorted('a.state') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'State', 'a.state') }}</th>
