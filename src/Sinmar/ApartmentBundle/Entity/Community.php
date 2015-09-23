@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Community
  *
- * @ORM\Table()
+ * @ORM\Table(name="Community")
  * @ORM\Entity
  */
 class Community
