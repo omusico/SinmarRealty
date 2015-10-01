@@ -22,11 +22,16 @@ class PetBreeds
     private $id;
 
     /**
-     * @var string
-     *
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="breed", type="string", length=255)
+     */
+    private $breed;
 
 
     /**
@@ -61,5 +66,29 @@ class PetBreeds
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set breed
+     *
+     * @param string $breed
+     *
+     * @return PetBreeds
+     */
+    public function setBreed($breed)
+    {
+        $this->breed = $breed;
+
+        return $this;
+    }
+
+    /**
+     * Get breed
+     *
+     * @return string
+     */
+    public function getBreed()
+    {
+        return $this->breed;
     }
 }

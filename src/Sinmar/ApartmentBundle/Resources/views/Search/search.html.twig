@@ -1,6 +1,175 @@
 {% extends "SinmarApartmentBundle::base.html.twig" %}
 
+{% block stylesheets %}
+{% endblock stylesheets %}
 
 {% block body %}
-    {{ dump(results) }}
+    <style>
+        select {
+            min-width: 100px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <form method="get" action="{{ path("searchResults") }}" class="form-horizontal">
+                <h2>Search By Complex Name: </h2>
+                <div class="form-group">
+                    <label for="complex" class="control-label col-sm-2">Complex Name</label>
+                    <div class="col-sm-10">
+                        <select name="complex" id="complex" class="select2">
+                            <option>Select A Complex</option>
+                            {% for c in complexes %}
+                                <option value="{{ c.id }}" {% if app.request.query.get("complex") == c.id %} Selected {% endif %}>{{ c.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Search By Complex Name" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <form method="get" action="{{ path("searchResults") }}" class="form-horizontal">
+                <h2>Search</h2>
+                <div class="form-group">
+                    <label for="community" class="control-label col-sm-2">Community</label>
+                    <div class="col-sm-10">
+                        <select name="community" id="community" class="select2">
+                            <option></option>
+                            {% for c in communities %}
+                                <option value="{{ c.id }}" {% if app.request.query.get("community") == c.id %} Selected {% endif %}>{{ c.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="control-label col-sm-2">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="address" class="form-control" value="{{ app.request.query.get("address") }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="control-label col-sm-2">City</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="city" class="form-control" value="{{ app.request.query.get("city") }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-2">Zip Code</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="zip" class="form-control" value="{{ app.request.query.get("zip") }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mgmt" class="control-label col-sm-2">Management Company</label>
+                    <div class="col-sm-10">
+                        <select name="mgmt" class="select2">
+                            {% for m in mgmt %}
+                                <option value="{{ m.mgmt }}">{{ m.mgmt }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="workWithAgents" class="control-label col-sm-2">Does the Apartment Complex Work with Rental Agents?</label>
+                    <div class="col-sm-10">
+                        <select name="workWithAgents" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="incomeRentRatio" class="control-label col-sm-2">Income To Rent Ratio?</label>
+                    <div class="col-sm-10">
+                        <select name="incomeRentRatio" id="incomeRentRatio" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gatedCommunity" class="control-label col-sm-2">Gated Community</label>
+                    <div class="col-sm-10">
+                        <select name="gatedCommunity" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="washerDryer" class="control-label col-sm-2">Washer/Dryer</label>
+                    <div class="col-sm-10">
+                        <select name="washerDryer" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pool" class="control-label col-sm-2">Pool</label>
+                    <div class="col-sm-10">
+                        <select name="pool" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="garage" class="control-label col-sm-2">Garage</label>
+                    <div class="col-sm-10">
+                        <select name="garage" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fitnessCenter" class="control-label col-sm-2">Fitness Center</label>
+                    <div class="col-sm-10">
+                        <select name="fitnessCenter" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="patioBalcony" class="control-label col-sm-2">Patio/Balcony</label>
+                    <div class="col-sm-10">
+                        <select name="patioBalcony" class="infinity">
+                            <option></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Search By Community Or Address" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock body %}
+
+{% block js %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('select').select2({
+                theme: "bootstrap"
+            });
+            $('select.infinity').select2({
+                minimumResultsForSearch: Infinity,
+                theme: "bootstrap"
+            });
+        });
+    </script>
+{% endblock js %}

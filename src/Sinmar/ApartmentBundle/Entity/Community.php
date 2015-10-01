@@ -33,7 +33,6 @@ class Community
      */
     private $apartments;
 
-
     /**
      * Get id
      *

@@ -1,0 +1,51 @@
+{% extends "SinmarApartmentBundle::base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger" role="alert">{{ flashMessage }}</div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success" role="alert">{{ flashMessage }}</div>
+            {% endfor %}
+        </div>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 title-area">
+            <div class="col-xs-12 col-sm-8">
+                <h2>Messages <small>-- Results Displaying: {{ pagination.getTotalItemCount }}</small></h2>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <a href="{{ path("message_add") }}" class="add-btn btn btn-default">Add Message</a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <table class="table">
+                <tr>
+                    <th{% if pagination.isSorted('m.id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'm.id') }}</th>
+                    <th{% if pagination.isSorted('m.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'm.title') }}</th>
+                    <th{% if pagination.isSorted('m.postedBy.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'PostedBy', 'm.postedBy.username') }}</th>
+                    <th{% if pagination.isSorted('m.createdAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Time Posted', 'm.createdAt') }}</th>
+                    <th{% if pagination.isSorted('m.editedBy.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Edited By', 'm.editedBy.username') }}</th>
+                    <th{% if pagination.isSorted('m.modifiedAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Time Edited', 'm.modifiedAt') }}</th>
+                    <th></th>
+                </tr>
+                {% for message in pagination %}
+                    <tr>
+                        <td>{{ message.id }}</td>
+                        <td>{{ message.title }}</td>
+                        <td>{{ message.postedBy.username }}</td>
+                        <td>{{ message.createdAt|date("m-d-y H:i a") }}</td>
+                        <td>{% if message.createdAt != message.modifiedAt %} {{ message.editedBy.username }} {% endif %}</td>
+                        <td>{% if message.createdAt != message.modifiedAt %} {{ message.modifiedAt|date("m-d-y H:i a") }} {% endif %}</td>
+                        <td><a href="{{ path("message_edit", {'id': message.id}) }}" class="btn btn-primary">Edit Message</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <div class="navigation text-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Community
  *
- * @ORM\Table()
+ * @ORM\Table(name="Community")
  * @ORM\Entity
  */
 class Community
@@ -32,7 +32,6 @@ class Community
      * @ORM\OneToMany(targetEntity="Apartment", mappedBy="community")
      */
     private $apartments;
-
 
     /**
      * Get id

@@ -22,27 +22,20 @@
     <div class="navigation">
         <div class="inner-header">
             <ul class="nav">
-                <li class="active linav"><a href="#">Home</a></li>
                 <li class="linav">
-                    <a href="{{ path("apartments_list") }}">Apartments <i class="fa fa-chevron-down"></i></a>
-                    {#<ul class="submenu" id="apartments_submenu">#}
-                        {#<li><a href="#">View Apartment List</a></li>#}
-                        {#<li><a href="#">Add Apartment</a></li>#}
-                    {#</ul>#}
+                    <a href="{{ path("home") }}">Home </a>
                 </li>
                 <li class="linav">
-                    <a href="#">Communities <i class="fa fa-chevron-down"></i></a>
-                    {#<ul class="submenu" id="communities_submenu">#}
-                        {#<li><a href="#">View Community List</a></li>#}
-                        {#<li><a href="#">Add Community</a></li>#}
-                    {#</ul>#}
+                    <a href="{{ path("search") }}">Search </a>
                 </li>
                 <li class="linav">
-                    <a href="#">Reporting <i class="fa fa-chevron-down"></i></a>
-                    {#<ul class="submenu" id="reporting_submenu">#}
-                        {#<li><a href="#">Phone Number List</a></li>#}
-                        {#<li><a href="#">Fax Number List</a></li>#}
-                    {#</ul>#}
+                    <a href="{{ path("apartments_list") }}">Apartments</a>
+                </li>
+                <li class="linav">
+                    <a href="{{ path("list_communities") }}">Communities </a>
+                </li>
+                <li class="linav">
+                    <a href="{{ path("report_home") }}">Reporting </a>
                 </li>
             </ul>
         </div>

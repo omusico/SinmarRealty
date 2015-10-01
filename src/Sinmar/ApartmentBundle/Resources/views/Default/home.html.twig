@@ -1,4 +1,22 @@
 {% extends "SinmarApartmentBundle::base.html.twig" %}
 
 {% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <br />
+            {% for m in messages %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ m.title }} -- {{ m.postedBy.username }} -- {{ m.createdAt|date("M d, Y H:i a") }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ m.message|raw }}
+                        {% if m.modifiedAt != m.createdAt %}
+                            <div style="width: 100%;" class="text-right">Edited By {{ m.editedBy.username }} On {{ m.modifiedAt|date("M d, Y H:i a") }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock body %}

@@ -5,12 +5,12 @@ namespace Sinmar\ApartmentBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Pets
+ * Bedroom
  *
- * @ORM\Table("PetBreeds")
+ * @ORM\Table(name="Bedroom")
  * @ORM\Entity
  */
-class PetBreeds
+class Bedroom
 {
     /**
      * @var integer
@@ -22,16 +22,16 @@ class PetBreeds
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="breed", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Apartment", inversedBy="beds")
      */
-    private $breed;
+    private $apartments;
 
 
     /**
@@ -49,7 +49,7 @@ class PetBreeds
      *
      * @param string $type
      *
-     * @return Pets
+     * @return Bedroom
      */
     public function setType($type)
     {
@@ -69,26 +69,26 @@ class PetBreeds
     }
 
     /**
-     * Set breed
+     * Set apartments
      *
-     * @param string $breed
+     * @param \Sinmar\ApartmentBundle\Entity\Apartment $apartments
      *
-     * @return PetBreeds
+     * @return Bedroom
      */
-    public function setBreed($breed)
+    public function setApartments(\Sinmar\ApartmentBundle\Entity\Apartment $apartments = null)
     {
-        $this->breed = $breed;
+        $this->apartments = $apartments;
 
         return $this;
     }
 
     /**
-     * Get breed
+     * Get apartments
      *
-     * @return string
+     * @return \Sinmar\ApartmentBundle\Entity\Apartment
      */
-    public function getBreed()
+    public function getApartments()
     {
-        return $this->breed;
+        return $this->apartments;
     }
 }

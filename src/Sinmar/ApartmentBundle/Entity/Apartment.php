@@ -83,6 +83,11 @@ class Apartment
     private $email;
 
     /**
+     * @ORM\OneToMany(targetEntity="Bedroom", mappedBy="apartments")
+     */
+    private $beds;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="incomeToRentRatio", type="integer")
@@ -922,5 +927,46 @@ class Apartment
     public function getJudgementAmtAccepted()
     {
         return $this->judgementAmtAccepted;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->beds = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add bed
+     *
+     * @param \Sinmar\ApartmentBundle\Entity\Bedroom $bed
+     *
+     * @return Apartment
+     */
+    public function addBed(\Sinmar\ApartmentBundle\Entity\Bedroom $bed)
+    {
+        $this->beds[] = $bed;
+
+        return $this;
+    }
+
+    /**
+     * Remove bed
+     *
+     * @param \Sinmar\ApartmentBundle\Entity\Bedroom $bed
+     */
+    public function removeBed(\Sinmar\ApartmentBundle\Entity\Bedroom $bed)
+    {
+        $this->beds->removeElement($bed);
+    }
+
+    /**
+     * Get beds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBeds()
+    {
+        return $this->beds;
     }
 }

@@ -6,7 +6,12 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+
         {% include "SinmarApartmentBundle:Elements:stylesheets.html.twig" %}
+        {% block stylesheets %}
+
+        {% endblock stylesheets %}
 
     </head>
     <body>
@@ -18,5 +23,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         {% include "SinmarApartmentBundle:Elements:javascripts.html.twig" %}
+        {% block js %}
+
+        {% endblock js %}
     </body>
 </html>

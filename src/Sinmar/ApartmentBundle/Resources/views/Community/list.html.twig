@@ -12,30 +12,24 @@
         </div>
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
             <div class="col-xs-12 col-sm-8">
-                <h2>Apartments <small>-- Results Displaying: {{ pagination.getTotalItemCount }}</small></h2>
+                <h2>Communities <small>-- Results Displaying: {{ pagination.getTotalItemCount }}</small></h2>
             </div>
             <div class="col-xs-12 col-sm-4">
-                <a href="{{ path("apartment_add") }}" class="add-btn btn btn-default">Add Apartment</a>
+                <a href="{{ path("add_community") }}" class="add-btn btn btn-default">Add Community</a>
             </div>
         </div>
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
             <table class="table">
                 <tr>
+                    <th{% if pagination.isSorted('a.id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
                     <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
-                    <th{% if pagination.isSorted('a.community') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Community', 'a.community.name') }}</th>
-                    <th{% if pagination.isSorted('a.address') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Address', 'a.address') }}</th>
-                    <th{% if pagination.isSorted('a.city') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'City', 'a.city') }}</th>
-                    <th{% if pagination.isSorted('a.state') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'State', 'a.state') }}</th>
                     <th></th>
                 </tr>
-                {% for apartment in pagination %}
+                {% for community in pagination %}
                     <tr>
-                        <td><a href="#">{{ apartment.name }}</a></td>
-                        <td><a href="#">{{ apartment.community.name }}</a></td>
-                        <td>{{ apartment.address }}</td>
-                        <td>{{ apartment.city }}</td>
-                        <td>{{ apartment.state }}</td>
-                        <td><a href="#" class="btn btn-primary">View</a></td>
+                        <td>{{ community.id }}</td>
+                        <td>{{ community.name }}</td>
+                        <td><a href="{{ path("edit_community", {'id': community.id}) }}" class="btn btn-primary">Edit Community</a></td>
                     </tr>
                 {% endfor %}
             </table>

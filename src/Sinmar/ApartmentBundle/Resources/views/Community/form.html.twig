@@ -1,0 +1,19 @@
+{% extends "SinmarApartmentBundle::base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <h2>Edit Community</h2>
+            <form method="post" action="{{ path("update_community") }}">
+                <div class="form-group">
+                    <label for="name" class="control-form">Community Name</label>
+                    <input type="text" name="name" id="name" value="{{ community.name }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="id" value="{{ community.id }}">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock body %}
